@@ -2,32 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.custom-img{
+    background-image: url(../../public/girls.jpg);
 }
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.promo-1{
+    background-image: url(../../public/shop.webp);
 }
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.promo-2{
+    background-image: url(../../public/jewellery.jpg);
 }
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.myDiscount{
+    transform:rotate(-90deg) translate(0, -69px);
+    transform-origin: 100% 0;
 }
