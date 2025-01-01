@@ -164,8 +164,7 @@
 
 
 
-
-"use client";
+"use client"; // Ensure this is at the top of the file
 import { FaHeart } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { IoMdAdd } from "react-icons/io";
@@ -191,15 +190,16 @@ interface CartItem {
 }
 
 const SlugPage = ({ params }: { params: { slug: string } }) => {
-  const product = useAppSelector((state:any) => state.product);
-  const slug = product.find((val:any) => val.slug === params.slug);
+  // Select product from the store based on the slug
+  const product = useAppSelector((state: any) => state.product);
+  const slug = product.find((val: any) => val.slug === params.slug);
 
-  // Handle the case where product is not found
+  // Handle the case where the product is not found
   if (!slug) {
     return <div>Product not found!</div>;
   }
 
-  // Initialize state with the found product
+  // Initialize cart item state
   const [cartItem, setCartItem] = useState<CartItem>({
     id: slug.id,
     title: slug.title,
@@ -223,7 +223,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
   };
 
   // Discounted price calculation
-  const discountedPrice = cartItem.discount > 0 
+  const discountedPrice = cartItem.discount > 0
     ? (cartItem.price - (cartItem.price * cartItem.discount) / 100) * cartItem.qty
     : cartItem.price * cartItem.qty;
 
@@ -265,7 +265,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
             {/* Color Selection */}
             <div className="flex mt-6 items-center mb-5">
               <span className="mr-3 font-bold text-black">Color</span>
-              {slug.color.map((color:any, i:any) => (
+              {slug.color.map((color: any, i: any) => (
                 <button
                   key={i}
                   onClick={() => setCartItem({ ...cartItem, color })}
@@ -281,9 +281,9 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
               <select
                 onChange={(e) => setCartItem({ ...cartItem, size: e.target.value })}
                 className="select select-bordered bg-[#FAFAFA] text-black"
-                defaultValue={cartItem.size}
+                value={cartItem.size} // Controlled component, use value to sync the select
               >
-                {slug.size.map((size:any, i:any) => (
+                {slug.size.map((size: any, i: any) => (
                   <option key={i} value={size}>
                     {size}
                   </option>

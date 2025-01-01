@@ -33,7 +33,6 @@ function Navbar() {
                 </details>
               </li>
               <li><Link href={"/contact"} className='text-black font-bold'>Contact</Link></li>
-              <li><Link href={"/product"} className='text-black font-bold'>Product</Link></li>
               <li><Link href={"/about"} className='text-black font-bold'>About</Link></li>
 
             </ul>
