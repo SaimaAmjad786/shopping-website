@@ -164,14 +164,17 @@
 
 
 
-"use client"; // Ensure this is at the top of the file
+
+
+
+"use client"; // This must be the very first line of the file
 import { FaHeart } from 'react-icons/fa';
 import { Button } from '@/components/ui/button';
 import { IoMdAdd } from "react-icons/io";
 import { RiSubtractLine } from "react-icons/ri";
 import Slugcomponents from '@/components/ui/slugcomponents';
 import { useAppSelector } from '../../store/hooks';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import AddToCartToast from '@/components/ui/addToCartToast';
 
 // Define the type for cart item
@@ -190,16 +193,15 @@ interface CartItem {
 }
 
 const SlugPage = ({ params }: { params: { slug: string } }) => {
-  // Select product from the store based on the slug
   const product = useAppSelector((state: any) => state.product);
   const slug = product.find((val: any) => val.slug === params.slug);
 
-  // Handle the case where the product is not found
+  // Handle the case where product is not found
   if (!slug) {
     return <div>Product not found!</div>;
   }
 
-  // Initialize cart item state
+  // Ensure useState is called unconditionally, initialize cartItem state here
   const [cartItem, setCartItem] = useState<CartItem>({
     id: slug.id,
     title: slug.title,
@@ -281,7 +283,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
               <select
                 onChange={(e) => setCartItem({ ...cartItem, size: e.target.value })}
                 className="select select-bordered bg-[#FAFAFA] text-black"
-                value={cartItem.size} // Controlled component, use value to sync the select
+                value={cartItem.size} // Controlled component
               >
                 {slug.size.map((size: any, i: any) => (
                   <option key={i} value={size}>
