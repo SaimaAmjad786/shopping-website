@@ -166,7 +166,6 @@
 
 
 
-
 "use client"; // This must be the very first line of the file
 import { FaHeart } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
@@ -196,25 +195,25 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
   const product = useAppSelector((state: any) => state.product);
   const slug = product.find((val: any) => val.slug === params.slug);
 
+  // Initialize cartItem state with fallback values for an empty product
+  const [cartItem, setCartItem] = useState<CartItem>({
+    id: slug?.id || "",
+    title: slug?.title || "",
+    image: slug?.image || "",
+    slug: slug?.slug || "",
+    price: slug?.price || 0,
+    discount: slug?.discount || 0,
+    category: slug?.category || "",
+    size: slug?.size?.[0] || "",
+    qty: 1,
+    uuid: Math.floor(1000 + Math.random() * 9000).toString(),
+    color: slug?.color?.[0] || "",
+  });
+
   // Handle the case where product is not found
   if (!slug) {
     return <div>Product not found!</div>;
   }
-
-  // Initialize cartItem state
-  const [cartItem, setCartItem] = useState<CartItem>({
-    id: slug.id,
-    title: slug.title,
-    image: slug.image,
-    slug: slug.slug,
-    price: slug.price,
-    discount: slug.discount,
-    category: slug.category,
-    size: slug.size[0], // Default to the first size
-    qty: 1, // Default quantity is 1
-    uuid: Math.floor(1000 + Math.random() * 9000).toString(), // Random UUID for the item
-    color: slug.color[0], // Default to the first color
-  });
 
   // Function to handle quantity change
   const updateQuantity = (increment: boolean) => {
