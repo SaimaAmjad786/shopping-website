@@ -168,14 +168,14 @@
 
 
 "use client"; // This must be the very first line of the file
-import { FaHeart } from 'react-icons/fa';
-import { Button } from '@/components/ui/button';
+import { FaHeart } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
 import { IoMdAdd } from "react-icons/io";
 import { RiSubtractLine } from "react-icons/ri";
-import Slugcomponents from '@/components/ui/slugcomponents';
-import { useAppSelector } from '../../store/hooks';
-import { useState } from 'react';
-import AddToCartToast from '@/components/ui/addToCartToast';
+import Slugcomponents from "@/components/ui/slugcomponents";
+import { useAppSelector } from "../../store/hooks";
+import { useState } from "react";
+import AddToCartToast from "@/components/ui/addToCartToast";
 
 // Define the type for cart item
 interface CartItem {
@@ -201,7 +201,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
     return <div>Product not found!</div>;
   }
 
-  // Ensure useState is called unconditionally, initialize cartItem state here
+  // Initialize cartItem state
   const [cartItem, setCartItem] = useState<CartItem>({
     id: slug.id,
     title: slug.title,
@@ -210,10 +210,10 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
     price: slug.price,
     discount: slug.discount,
     category: slug.category,
-    size: slug.size[0],  // Default to the first size
-    qty: 1,  // Default quantity is 1
+    size: slug.size[0], // Default to the first size
+    qty: 1, // Default quantity is 1
     uuid: Math.floor(1000 + Math.random() * 9000).toString(), // Random UUID for the item
-    color: slug.color[0],  // Default to the first color
+    color: slug.color[0], // Default to the first color
   });
 
   // Function to handle quantity change
@@ -225,9 +225,10 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
   };
 
   // Discounted price calculation
-  const discountedPrice = cartItem.discount > 0
-    ? (cartItem.price - (cartItem.price * cartItem.discount) / 100) * cartItem.qty
-    : cartItem.price * cartItem.qty;
+  const discountedPrice =
+    cartItem.discount > 0
+      ? (cartItem.price - (cartItem.price * cartItem.discount) / 100) * cartItem.qty
+      : cartItem.price * cartItem.qty;
 
   return (
     <div>
@@ -242,9 +243,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
               {slug.category}
             </h2>
 
-            <h1 className="font-bold text-3xl mb-1 mt-3 text-black">
-              {slug.title}
-            </h1>
+            <h1 className="font-bold text-3xl mb-1 mt-3 text-black">{slug.title}</h1>
 
             {/* Ratings */}
             <div className="rating mt-3">
@@ -260,9 +259,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
             </div>
 
             {/* Description */}
-            <p className="leading-relaxed mt-3 text-black font-medium">
-              {slug.description}
-            </p>
+            <p className="leading-relaxed mt-3 text-black font-medium">{slug.description}</p>
 
             {/* Color Selection */}
             <div className="flex mt-6 items-center mb-5">
@@ -283,7 +280,7 @@ const SlugPage = ({ params }: { params: { slug: string } }) => {
               <select
                 onChange={(e) => setCartItem({ ...cartItem, size: e.target.value })}
                 className="select select-bordered bg-[#FAFAFA] text-black"
-                value={cartItem.size} // Controlled component
+                value={cartItem.size}
               >
                 {slug.size.map((size: any, i: any) => (
                   <option key={i} value={size}>
