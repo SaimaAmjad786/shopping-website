@@ -112,7 +112,7 @@ export const products: Product[] = [
     title: "Amazing Printed Tees",
     image: [
       "/shirt.jpg",
-      "shirt.jpg",
+      "/shirt.jpg",
       "/shirt.jpg",
     ],
     slug: "amazing-printed-tees",
@@ -144,7 +144,7 @@ export const products: Product[] = [
   {
     id: 10,
     title: "Raybon Glasses",
-    image: ["/glasses1.jpg", "/glasses1.jpg"],
+    image: ["/glasses1.jpg", "/glassses1.jpg"],
     slug: "raybon-glasses",
     price: 2500,
     discount: 30,
